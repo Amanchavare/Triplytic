@@ -75,14 +75,17 @@ struct AddTripForm: View {
                 Image(systemName: "xmark")
             }),
                                 
-                                trailing: Button("save") {
-                homeViewModel.addTrip(
-                    name: tripName,
-                    startDate: formatDate(startDate),
-                    endDate: formatDate(endDate),
-                    currency: currency,
-                    image: selectedImage
-                )
+                                trailing: Button("Save") {
+                // Save the image and add trip
+                if let selectedImage = selectedImage, let imagePath = homeViewModel.saveImageToDocuments(image: selectedImage) {
+                    homeViewModel.addTrip(
+                        name: tripName,
+                        startDate: formatDate(startDate),
+                        endDate: formatDate(endDate),
+                        currency: currency,
+                        imageName: imagePath // Pass image path here
+                    )
+                }
                 presentationMode.wrappedValue.dismiss()
             }
                 .disabled(tripName.isEmpty))

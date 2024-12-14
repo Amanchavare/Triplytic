@@ -8,13 +8,14 @@
 import Foundation
 import UIKit
 
-struct Trip: Identifiable,Hashable {
+struct Trip: Identifiable,Hashable,Codable {
     var id = UUID()
     var name: String
     var startDate: String
     var endDate: String
     var currency: String
-    let image: UIImage?
+    //let image: UIImage?
+    let imageName: String
 }
 
 

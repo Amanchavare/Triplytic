@@ -63,7 +63,9 @@ struct TripRow: View {
     
     var body: some View {
         HStack {
-            if let image = trip.image {
+            // Check if the image exists at the path
+            let imagePath = trip.imageName
+            if !imagePath.isEmpty, let image = UIImage(named: imagePath) {
                 Image(uiImage: image)
                     .resizable()
                     .frame(width: 50, height: 50)
@@ -74,6 +76,7 @@ struct TripRow: View {
                     .frame(width: 50, height: 50)
                     .cornerRadius(8)
             }
+            
             VStack(alignment: .leading) {
                 Text(trip.name).font(.headline)
                 Text("\(trip.startDate) - \(trip.endDate)").font(.subheadline)
