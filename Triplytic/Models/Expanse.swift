@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct Expanse: Identifiable {
+struct Expanse: Identifiable, Codable {
     var id = UUID()
     var category: String
     var title: String
     var trip: Trip
+    var amount: Double
+    var date: String
+    var imageName: String
+    var isSpent: Bool
 }

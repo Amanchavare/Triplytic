@@ -14,12 +14,56 @@ struct AddTripForm: View {
     @State private var tripName = ""
     @State private var startDate = Date()
     @State private var endDate = Date()
-    @State private var currency = "USD"
+    @State private var currency = "EUR"
     @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented = false
     @Environment(\.presentationMode) var presentationMode
     
-    let currencies = ["USD", "EUR", "INR", "GBP"]
+    let currencies = [
+        "USD", // US Dollar
+        "EUR", // Euro
+        "INR", // Indian Rupee
+        "GBP", // British Pound
+        "AUD", // Australian Dollar
+        "CAD", // Canadian Dollar
+        "JPY", // Japanese Yen
+        "CNY", // Chinese Yuan
+        "CHF", // Swiss Franc
+        "SGD", // Singapore Dollar
+        "HKD", // Hong Kong Dollar
+        "NZD", // New Zealand Dollar
+        "SEK", // Swedish Krona
+        "NOK", // Norwegian Krone
+        "DKK", // Danish Krone
+        "ZAR", // South African Rand
+        "AED", // United Arab Emirates Dirham
+        "SAR", // Saudi Riyal
+        "KRW", // South Korean Won
+        "THB", // Thai Baht
+        "MYR", // Malaysian Ringgit
+        "IDR", // Indonesian Rupiah
+        "PHP", // Philippine Peso
+        "MXN", // Mexican Peso
+        "BRL", // Brazilian Real
+        "RUB", // Russian Ruble
+        "TRY", // Turkish Lira
+        "PLN", // Polish Zloty
+        "HUF", // Hungarian Forint
+        "CZK", // Czech Koruna
+        "ILS", // Israeli New Shekel
+        "ARS", // Argentine Peso
+        "CLP", // Chilean Peso
+        "COP", // Colombian Peso
+        "PKR", // Pakistani Rupee
+        "EGP", // Egyptian Pound
+        "NGN", // Nigerian Naira
+        "KES", // Kenyan Shilling
+        "BDT", // Bangladeshi Taka
+        "VND", // Vietnamese Dong
+        "KWD", // Kuwaiti Dinar
+        "OMR", // Omani Rial
+        "BHD"  // Bahraini Dinar
+    ]
 
     
     var body: some View {
@@ -48,7 +92,7 @@ struct AddTripForm: View {
                             }
                         }
                         .sheet(isPresented: $isImagePickerPresented) {
-                            ImagePicker(selectedImage: $selectedImage)
+                            ImagePicker2(selectedImage: $selectedImage)
                         }
 
                     }
@@ -99,7 +143,7 @@ struct AddTripForm: View {
     }
 }
 
-struct ImagePicker: UIViewControllerRepresentable {
+struct ImagePicker2: UIViewControllerRepresentable {
     @Binding var selectedImage: UIImage?
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -115,9 +159,9 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
+        let parent: ImagePicker2
         
-        init(_ parent: ImagePicker) {
+        init(_ parent: ImagePicker2) {
             self.parent = parent
         }
         

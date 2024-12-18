@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    let homeViewModel = HomeViewModel()
     
     var body: some View {
         TabView {
@@ -17,27 +16,32 @@ struct ContentView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
-                .environment(homeViewModel)
             
             ExpensesView()
                 .tabItem {
                     Image(systemName: "dollarsign.circle.fill")
                     Text("Expenses")
                 }
-                .environment(homeViewModel)
             
-            PaymentsView()
+            NotesJournalView()
                 .tabItem {
-                    Image(systemName: "creditcard.fill")
-                    Text("Payments")
-                }
+                                    Image(systemName: "book.fill")
+                                    Text("Notes")
+                                }
+            NotificationsView()
+                           .tabItem {
+                               Image(systemName: "bell.fill")
+                               Text("Notifications")
+                           }
             
+            ProfileView()
+                            .tabItem {
+                                Image(systemName: "person.circle.fill")
+                                Text("Profile")
+                            }
                 
         }
 
     }
 }
 
-#Preview {
-    ContentView()
-}

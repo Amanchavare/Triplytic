@@ -14,7 +14,6 @@ struct Trip: Identifiable,Hashable,Codable {
     var startDate: String
     var endDate: String
     var currency: String
-    //let image: UIImage?
     let imageName: String
 }
 

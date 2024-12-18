@@ -55,4 +55,8 @@ class HomeViewModel: ObservableObject{
         }
         return nil
     }
+    
+    func deleteTrip(at offsets: IndexSet){
+        trips.remove(atOffsets: offsets)
+    }
 }

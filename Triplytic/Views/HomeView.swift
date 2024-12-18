@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(HomeViewModel.self) var homeViewModel
+    @Environment(ExpanseViewModel.self) var expanseViewModel
     @State private var showAddTripForm = false
     
     var body: some View {
@@ -28,8 +29,14 @@ struct HomeView: View {
                           .padding(.top, 8)
                      Spacer()
                 }else{
-                    List(homeViewModel.trips) { trip in
-                        TripRow(trip: trip) // Custom row to show trip details
+                    List {
+                        ForEach(homeViewModel.trips) { trip in
+                            //TripRow(trip: trip)
+                            NavigationLink(destination: TripDetailView(trip: trip, expanseViewModel: expanseViewModel)) {
+                                       TripRow(trip: trip)
+                                   }
+                        }
+                        .onDelete(perform: deleteTrip)
                     }
                 }
                 
@@ -55,6 +62,10 @@ struct HomeView: View {
                 AddTripForm(homeViewModel: _homeViewModel)
             }
         }
+    }
+    
+    private func deleteTrip(at offsets: IndexSet){
+        homeViewModel.deleteTrip(at: offsets)
     }
 }
 
